@@ -33,14 +33,10 @@ runs:
         fileName: "juliaup-*-x86_64-pc-windows-gnu-portable.tar.gz"
         extract: true
         out-file-path: "${{github.workspace}}/.juliaup"
-    - id: diag
-      shell: pwsh
-      run: |
-        get-childitem "${{github.workspace}}/.juliaup"
     - id: path
       shell: pwsh
       run: |
-        Move-Item "${{github.workspace}}/.juliaup/JuliaLang-juliaup-*/*" "${{github.workspace}}/.juliaup"
+        Remove-Item "${{github.workspace}}/.juliaup/*.gz"
         "${{github.workspace}}/.juliaup" | Out-File -FilePath $env:GITHUB_PATH -Append
     - id: diag2
       shell: pwsh
