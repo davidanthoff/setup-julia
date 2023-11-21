@@ -32,7 +32,13 @@ runs:
         latest: true
         fileName: "juliaup-*-x86_64-pc-windows-gnu-portable.tar.gz"
         extract: true
-        out-file-path: ".juliaup"
+        out-file-path: "${{github.workspace}}/.juliaup"
+    - id: diag
+      shell: bash
+      run: |
+        ls
+        cd .juliaup
+        ls
     - id: path
       shell: bash
       run: echo "${{github.workspace}}/.juliaup/" >> $GITHUB_PATH
