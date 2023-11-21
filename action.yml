@@ -23,8 +23,27 @@ outputs:
   julia-bindir:
     description: 'Path to the directory containing the Julia executable. Equivalent to JULIA_BINDIR: https://docs.julialang.org/en/v1/manual/environment-variables/#JULIA_BINDIR'
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: 'composite'
+  steps:
+    - id: juliaup
+      uses: robinraju/release-downloader@v1.8
+      with:
+        repository: "JuliaLang/juliaup"
+        latest: true
+        fileName: "juliaup-*-x86_64-pc-windows-gnu-portable.tar.gz"
+        extract: true
+        out-file-path: ".juliaup"
+    - id: path
+      shell: bash
+      run: echo "${{github.workspace}}/.juliaup/" >> $GITHUB_PATH
+    - id: julia
+      run: |
+        juliaup add release
+        juliaup default release
+    - id: test
+      run: |
+        julia -v
+        juliaup -V
 branding:
   icon: 'download'
   color: 'green'
