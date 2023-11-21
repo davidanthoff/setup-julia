@@ -37,7 +37,7 @@ runs:
       shell: bash
       run: |
         ls
-        cd .juliaup
+        cd ${{github.workspace}}/.juliaup
         ls
     - id: path
       shell: bash
