@@ -35,7 +35,8 @@ runs:
         out-file-path: "${{github.workspace}}/.juliaup"
     - id: path
       shell: pwsh
-      run: "${{github.workspace}}/.juliaup" | Out-File -FilePath $env:GITHUB_PATH -Append
+      run: |
+        "${{github.workspace}}/.juliaup" | Out-File -FilePath $env:GITHUB_PATH -Append
     - id: julia
       shell: pwsh
       run: |
