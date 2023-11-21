@@ -41,7 +41,14 @@ runs:
     - id: path
       shell: pwsh
       run: |
+        Move-Item "${{github.workspace}}/.juliaup/JuliaLang-juliaup-*/*" "${{github.workspace}}/.juliaup
+        Remove-Item "${{github.workspace}}/.juliaup/JuliaLang-juliaup-*"
+        Remove-Item "${{github.workspace}}/.juliaup/*.gz"
         "${{github.workspace}}/.juliaup" | Out-File -FilePath $env:GITHUB_PATH -Append
+    - id: diag2
+      shell: pwsh
+      run: |
+        get-childitem "${{github.workspace}}/.juliaup"
     - id: julia
       shell: pwsh
       run: |
