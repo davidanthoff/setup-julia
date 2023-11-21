@@ -38,10 +38,11 @@ runs:
       run: |
         Remove-Item "${{github.workspace}}/.juliaup/*.gz"
         "${{github.workspace}}/.juliaup" | Out-File -FilePath $env:GITHUB_PATH -Append
-    - id: diag2
-      shell: pwsh
-      run: |
-        get-childitem "${{github.workspace}}/.juliaup"
+    - id: cache
+      uses: actions/cache@v3
+      with:
+        path: "${{github.workspace}}/.julia/juliaup"
+        key: testcache1
     - id: julia
       shell: pwsh
       run: |
