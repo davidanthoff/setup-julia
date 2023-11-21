@@ -41,9 +41,7 @@ runs:
     - id: path
       shell: pwsh
       run: |
-        Move-Item "${{github.workspace}}/.juliaup/JuliaLang-juliaup-*/*" "${{github.workspace}}/.juliaup
-        Remove-Item "${{github.workspace}}/.juliaup/JuliaLang-juliaup-*"
-        Remove-Item "${{github.workspace}}/.juliaup/*.gz"
+        Move-Item "${{github.workspace}}/.juliaup/JuliaLang-juliaup-*/*" "${{github.workspace}}/.juliaup"
         "${{github.workspace}}/.juliaup" | Out-File -FilePath $env:GITHUB_PATH -Append
     - id: diag2
       shell: pwsh
