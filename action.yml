@@ -37,10 +37,12 @@ runs:
       shell: bash
       run: echo "${{github.workspace}}/.juliaup/" >> $GITHUB_PATH
     - id: julia
+      shell: bash
       run: |
         juliaup add release
         juliaup default release
     - id: test
+      shell: bash
       run: |
         julia -v
         juliaup -V
