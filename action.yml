@@ -33,22 +33,16 @@ runs:
         fileName: "juliaup-*-x86_64-pc-windows-gnu-portable.tar.gz"
         extract: true
         out-file-path: "${{github.workspace}}/.juliaup"
-    - id: diag
-      shell: bash
-      run: |
-        ls
-        cd ${{github.workspace}}/.juliaup
-        ls
     - id: path
-      shell: bash
-      run: echo "${{github.workspace}}/.juliaup/" >> $GITHUB_PATH
+      shell: pwsh
+      run: "${{github.workspace}}/.juliaup" | Out-File -FilePath $env:GITHUB_PATH -Append
     - id: julia
-      shell: bash
+      shell: pwsh
       run: |
         juliaup add release
         juliaup default release
     - id: test
-      shell: bash
+      shell: pwsh
       run: |
         julia -v
         juliaup -V
