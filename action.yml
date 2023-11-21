@@ -29,10 +29,9 @@ runs:
       uses: robinraju/release-downloader@v1.8
       with:
         repository: "JuliaLang/juliaup"
-        latest: true
+        tag: "v1.12.5"
         fileName: "juliaup-*-x86_64-pc-windows-gnu-portable.tar.gz"
         extract: true
-        tarBall: true
         out-file-path: "${{github.workspace}}/.juliaup"
     - id: diag
       shell: pwsh
